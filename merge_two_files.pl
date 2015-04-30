@@ -119,8 +119,8 @@ createConfig.pl [-h] -p -o  [ -o -h -v ]
      
     --file1  (-f1) file1 
     --file2  (-f2) file2 
-    --col1  (-c1) comma separated column numbers fom file1 file 
-    --col2  (-c2) comma separated columns numbers fom file2 file
+    --col1  (-c1) comma separated column numbers fom file1  
+    --col2  (-c2) comma separated columns numbers fom file2 
     --header  (-h) [1|0] header line present 
 
 =cut
