@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 use strict;
 use warnings;
 use File::Basename;
@@ -5,6 +6,10 @@ use File::Spec;
 use Getopt::Long;
 use Pod::Usage qw(pod2usage);
 use Data::Dumper;
+######################
+Author:Shriram Bhosle
+Emain:shrirambhosleATgamail.com
+#####################
 
 my ($options) = option_builder();
 
