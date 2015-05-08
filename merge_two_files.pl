@@ -6,10 +6,6 @@ use File::Spec;
 use Getopt::Long;
 use Pod::Usage qw(pod2usage);
 use Data::Dumper;
-######################
-Author:Shriram Bhosle
-Emain:shrirambhosleATgamail.com
-#####################
 
 my ($options) = option_builder();
 
@@ -24,31 +20,37 @@ my $col_f2=$options->{'c2'};
 chomp $col_f1;
 chomp $col_f2;
 
-open(my $combined_file, '>', $f1.'_'.$f2.$s1); 
+# create file handle for filed to write [ common columns and different columns
+open(my $fh_common, '>', $f1.'_'.$f2.'common'.$s1); 
+
+# create hash of both the files....
 
 my ($file1_hash)=get_file_hash($fh1,$col_f1,$options->{'h'},$f1);
 my ($file2_hash)=get_file_hash($fh2,$col_f2,$options->{'h'},$f2);
 
+#combine files
+combine_hash($file1_hash,$file2_hash,$fh_common,$options->{'h'});
 
-
-combine_hash($file1_hash,$file2_hash,$combined_file,$options->{'h'});
-
+# sub to combine file data...
 sub combine_hash {
-	my($hash_f1,$hash_f2,$fh,$header)=@_;
+	my($hash_f1,$hash_f2,$fh_combined,$header)=@_;
 	my $count=0;
+	# Write common rows file...
 	if($header){
-		print $fh $hash_f1->{'header'}."\t".$hash_f2->{'header'}."\n";
+		print $fh_common $hash_f1->{'header'}."\t".$hash_f2->{'header'}."\n";
 	}
+	#print Dumper $hash_f1;
 	foreach my $key(keys %$hash_f1) {
 		next if $key eq 'header';
 		if ($hash_f2->{$key}) {
-		  print $fh $hash_f1->{$key}."\t".$hash_f2->{$key}."\n";
+		  print $fh_combined $hash_f1->{$key}."\t".$hash_f2->{$key}."\n";
 		  $count++;
 		}
-	} 
+	}	
 	print "Found $count matching lines\n"; 
 }
 
+# create hash from file
 sub get_file_hash {
 	my ($fh,$columns,$header,$f)=@_;
 	my $file_hash;
@@ -71,6 +73,7 @@ return $file_hash
 }
 
 
+# get common key from both files
 sub get_col_key {
 	my ($line,$columns)=@_;
 	my $col_key;
