@@ -1,5 +1,5 @@
 # my_scripts
 
-Added script that canbe used to compare two files with user specified columns and merge the files based on matched columns.
+Script to compare and merge two files based on user specified matched columns.
 for usage:
-merge_two_files.pl -h
+merge2files.pl -h
