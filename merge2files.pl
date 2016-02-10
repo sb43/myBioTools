@@ -9,28 +9,39 @@ use Data::Dumper;
 
 my ($options) = option_builder();
 
+
+if(!-s $options->{'f1'} && !-s $options->{'f2'}) {
+	warn "Unable to find files\n";
+	exit;
+} 
+
 open(my $fh1, $options->{'f1'}) || warn "print $!";
 open(my $fh2, $options->{'f2'}) || warn "print $!";
+
+
+
 
 my ($f1,$d1,$s1) = fileparse($options->{'f1'},qr/\.[^.]*/);
 my ($f2,$d2,$s2) = fileparse($options->{'f2'},qr/\.[^.]*/);
 
 my $col_f1=$options->{'c1'};
 my $col_f2=$options->{'c2'};
-$options->{'hdr'}=0 unless($options->{'hdr'}); 
+$options->{'hdr1'}=0 unless($options->{'hdr1'}); 
+$options->{'hdr2'}=0 unless($options->{'hdr2'}); 
 chomp $col_f1;
 chomp $col_f2;
 
+
 # create file handle for filed to write [ common columns and different columns
-open(my $fh_common, '>', $f1.'_'.$f2.'common'.$s1); 
+open(my $fh_common, '>', $options->{'o'}.'/'.$f1.'_'.$f2.'common'.$s1); 
 
 # create hash of both the files....
 
-my ($file1_hash)=get_file_hash($fh1,$col_f1,$options->{'hdr'},$f1);
-my ($file2_hash)=get_file_hash($fh2,$col_f2,$options->{'hdr'},$f2);
+my ($file1_hash)=get_file_hash($fh1,$col_f1,$options->{'hdr1'},$f1);
+my ($file2_hash)=get_file_hash($fh2,$col_f2,$options->{'hdr2'},$f2);
 
 #combine files
-combine_hash($file1_hash,$file2_hash,$fh_common,$options->{'hdr'});
+combine_hash($file1_hash,$file2_hash,$fh_common,$options->{'hdr1'});
 
 # sub to combine file data...
 sub combine_hash {
@@ -45,6 +56,7 @@ sub combine_hash {
   # write common rows
 	foreach my $key(keys %$hash_f1) {
 		next if $key eq 'header';
+		next if $key eq 'pre_header_lines';
 		if ($hash_f2->{$key}) {
 		  print $fh_combined $hash_f1->{$key}."\t".$hash_f2->{$key}."\n";
 		  $count++;
@@ -60,17 +72,17 @@ sub get_file_hash {
 	my $count=0;	
 	while (my $line=<$fh>) {	
 		$count++;
-		next if $line=~/^\s+\n/;
+		next if $line=~/^\n/;
 		$line=~s/\n//g;
 		my ($col_key) = get_col_key($line,$columns) if $count >= $header_row;
 		if($count <= $header_row ) {
 			if($count==$header_row) {
 			 $file_hash->{'header'}=$line;
+				print "Columns to compare from file: : $col_key\n" if defined $col_key; 
 			}
 			else {
 				$file_hash->{'pre_header_lines'}.="$line\n";
 			}
-			print "Columns to compare from file: : $col_key\n" if defined $col_key; 
 			next;
 		} 
 		$file_hash->{$col_key}="$line";
@@ -113,7 +125,9 @@ sub option_builder {
 					'f2|file2=s'  => \$opts{'f2'},
 					'c1|col1=s'  => \$opts{'c1'},
 					'c2|col2=s'  => \$opts{'c2'},
-					'hdr|header=s'  => \$opts{'hdr'},
+					'o|output=s'  => \$opts{'o'},
+					'hdr1|header1=s'  => \$opts{'hdr1'},
+					'hdr2|header2=s'  => \$opts{'hdr2'},
 					'v|version'  => \$opts{'v'},
 	);
 
@@ -129,7 +143,7 @@ merge2files.pl - creates a single merged file using user defined matching column
 
 =head1 SYNOPSIS
 
-merge2files.pl [-h] -f1 -f2 -c1 -c2 [-hdr]
+merge2files.pl [-h] -f1 -f2 -c1 -c2 [-hdr1 -hdr2]
 
   Required Options:
     --help          (-h)  This message and format of input file
@@ -138,7 +152,9 @@ merge2files.pl [-h] -f1 -f2 -c1 -c2 [-hdr]
     --file2  (-f2) file2 
     --col1  (-c1) comma separated column numbers fom file1  
     --col2  (-c2) comma separated columns numbers fom file2 
-    --header  (-hdr)  header row number 
+    --header1  (-hdr1)  header row number first file 
+    --header2  (-hdr2)  header row number second file
+    --output  (-o) output folder 
 
 =cut
 
