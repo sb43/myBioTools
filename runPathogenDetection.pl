@@ -65,7 +65,11 @@ try {
   if($options->{'t'} eq 'BACTERIA'){
 	 $gottcha_db=$BACTERIA;
   }
-
+  if(defined $options->{'d'}){
+		print "Using user defined fasta file as detection database";
+		$gottcha_db=$options->{'d'}; 
+	}
+  
   $cmd = "$gottcha_path/gottcha.pl --threads $options->{'n'} --mode summary --minQ 10 --outdir $options->{'o'} ".
   " --input $options->{'o'}/tmp/unmapped.fastq".
   " --noPlasmidHit ".
@@ -88,6 +92,7 @@ sub option_builder {
           'bam|sampleBam=s' => \$opts{'bam'},
           'i|includeMate=s' => \$opts{'i'},
           't|analysisType=s' => \$opts{'t'},
+          'd|userDb=s' => \$opts{'d'},
           'n|numCpu=i' => \$opts{'n'},
           'o|outdir=s'  => \$opts{'o'},
   );
@@ -139,7 +144,7 @@ runPathogenDetection.pl - run virus detection a set of unmapped reads extracted 
 
 =head1 SYNOPSIS
 
-runPathogenDetection.pl -bam -o [-i -t -n -h ]
+runPathogenDetection.pl -bam -o [-i -t -d -n -h ]
 
 Required Options (bam and outdir must be defined):
 
@@ -148,7 +153,9 @@ Required Options (bam and outdir must be defined):
 Optional:
 
   --includeMate       (-i) include mate sequence of unmapped read [Y,N:default N], an option to include/exclude mapped mate of an unmapped read, takes more time to fetch the reads 
-  --analysisType      (-t) analysis type[VIRUSES,BACTERIA:default VIRUSES]
+  --databaseType      (-t) databaseType [VIRUSES,BACTERIA:default VIRUSES]
+  --userDb            (-d) The path of signature database. The database can be
+                           in FASTA format or BWA index (5 files).
   --numCpu            (-n) fasta reference genome file 
   --help              (-h) This message 
 	Example:
