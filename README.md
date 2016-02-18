@@ -12,5 +12,5 @@ merge2files.pl -h
 * runVirusdetection.sh 
 
 ##runPathogenDetection 
-* This is generic perl wrapper to detect pathogen seuences in using GOTTCHA method [see above description for reference]
+* This is generic perl wrapper to detect pathogen seuences using GOTTCHA method [see above description for reference]
 * More robust options to select unmapped reads sequences
