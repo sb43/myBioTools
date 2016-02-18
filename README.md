@@ -10,6 +10,7 @@ merge2files.pl -h
 * Download latest signature database for specific organism from : ftp://ftp.lanl.gov/public/genome/gottcha/GOTTCHA_database_v20150825/
 * Also needs lookup database GOTTCHA_lookup.tar.gz
 * runVirusdetection.sh 
+
 ##runPathogenDetection 
 * This is generic perl wrapper to detect pathogen seuences in using GOTTCHA method [see above description for reference]
 * More robust options to select unmapped reads sequences
