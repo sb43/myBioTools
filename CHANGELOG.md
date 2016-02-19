@@ -1,3 +1,5 @@
+### 2.2.0
+* Added option to include mapped reads whose mate is unmapped, removes tmp folder
 ### 2.1.0
 * Added generic PathogenDetection wrapper for GOTTCHA
 
