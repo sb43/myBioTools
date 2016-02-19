@@ -21,7 +21,6 @@
 ##########LICENCE##############################################################
 BEGIN {
   use Cwd qw(abs_path);
-  use File::Basename;
   $SIG{__WARN__} = sub {warn $_[0] unless(( $_[0] =~ m/^Subroutine Tabix.* redefined/) || ($_[0] =~ m/^Use of uninitialized value \$buf/))};
 };
 
@@ -31,7 +30,7 @@ use Pod::Usage qw(pod2usage);
 use Const::Fast qw(const);
 use Getopt::Long;
 use Try::Tiny qw(try catch finally);
-use File::Path qw(mkpath);
+use File::Path qw(mkpath remove_tree);
 use Capture::Tiny qw(:all);
 
 const my $gottcha_path => qw(/software/CGP/external-apps/GOTTCHA/bin);
@@ -43,24 +42,28 @@ const my $VIRUSES => '/lustre/scratch112/sanger/cgppipe/canpipe/test/ref/human/3
 try {
   my ($options) = option_builder();
   my $cmd=undef;	
-
-  if(defined $options->{'i'} && lc($options->{'i'}) eq 'y' ) {
+  my $unapped_fastq="$options->{'o'}/tmp/unmapped.fastq";
+  if(defined $options->{'i'} && lc($options->{'i'}) eq 'y' && !defined $options->{'u'}) {
 		print "Feteching all unmapped reads and their mates ......\n";
 		#unmapped read whose mate is mapped
-		$cmd="samtools view -f 4 -F264 $options->{'bam'} | awk \'$awk_cmd\'  >$options->{'o'}/tmp/unmapped.fastq";
+		$cmd="samtools view -f 4 -F264 $options->{'bam'} | awk \'$awk_cmd\'  >$unapped_fastq";
 		_run_cmd($cmd);
 		#mapped read whose mate is unmapped
-		$cmd="samtools view -f 8 -F260 $options->{'bam'} | awk \'$awk_cmd\'  >>$options->{'o'}/tmp/unmapped.fastq";
+		$cmd="samtools view -f 8 -F260 $options->{'bam'} | awk \'$awk_cmd\'  >>$unapped_fastq";
 		_run_cmd($cmd);
 		#Both reads unmapped
-		my $cmd="samtools view -f 12 -F256 $options->{'bam'} | awk \'$awk_cmd\' >>$options->{'o'}/tmp/unmapped.fastq";
+		my $cmd="samtools view -f 12 -F256 $options->{'bam'} | awk \'$awk_cmd\' >>$unapped_fastq";
 		_run_cmd($cmd);
-  }else {
+  }elsif(!defined $options->{'i'} && !defined $options->{'u'}) {
 		print "Feteching only unmapped reads ......\n";
 		$cmd="samtools view -f 4 $options->{'bam'} | awk \'$awk_cmd\'  >$options->{'o'}/tmp/unmapped.fastq";
 		_run_cmd($cmd);
 	} 
-  print "Running detection for : $options->{'t'} .....\n";
+	else{
+		$unapped_fastq=$options->{'u'};
+	}
+  print "Running detection for : $options->{'t'} .....\n" if(!defined $options->{'d'});
+   
 	my $gottcha_db = $VIRUSES;
   if($options->{'t'} eq 'BACTERIA'){
 	 $gottcha_db=$BACTERIA;
@@ -71,13 +74,13 @@ try {
 	}
   
   $cmd = "$gottcha_path/gottcha.pl --threads $options->{'n'} --mode summary --minQ 10 --outdir $options->{'o'} ".
-  " --input $options->{'o'}/tmp/unmapped.fastq".
+  " --input $unapped_fastq".
   " --noPlasmidHit ".
   " --database $gottcha_db";
   # run command
   _run_cmd($cmd) if(defined $cmd);
-  
-  print "\nCompleted virus detection using GOTTCHA.....\nCheck result file unmapped.gottcha.tsv .... \n";
+  print "\nCompleted virus detection using GOTTCHA.....\nCheck result file <unmapped_file_name>.gottcha.tsv .... \n";
+  remove_tree("$options->{'o'}/tmp") if($options->{'r'} && -d "$options->{'o'}/tmp" );
 }
 catch {
 print "$_";
@@ -93,7 +96,9 @@ sub option_builder {
           'i|includeMate=s' => \$opts{'i'},
           't|analysisType=s' => \$opts{'t'},
           'd|userDb=s' => \$opts{'d'},
+          'u|unmappedFastq=s' => \$opts{'u'},
           'n|numCpu=i' => \$opts{'n'},
+          'r|removeTmp=i' => \$opts{'r'},
           'o|outdir=s'  => \$opts{'o'},
   );
 
@@ -104,13 +109,16 @@ sub option_builder {
   if(!defined $opts{'n'}) {
     $opts{'n'}=1;
   }
+  if(!defined $opts{'r'}) {
+    $opts{'r'}=1;
+  }
 	if(uc($opts{'t'}) ne 'VIRUSES' && uc($opts{'t'}) ne 'BACTERIA') {
 		print "\nAnalysis type doesn't match with VIRUS or BACTERIA\n";
 	}
 	if(defined $opts{'o'}) {
 		mkpath("$opts{'o'}/tmp");
 	}
-  pod2usage(q{'-bam' bam file must be specified.}) unless(defined $opts{'bam'}) ;
+  pod2usage(q{'-bam' bam or (-u) fastq file must be specified.}) unless(defined $opts{'bam'} || defined $opts{'u'}) ;
   pod2usage(q{'-t' analysis type[VIRUSES,BACTERIA:default VIRUSES].}) unless(defined $opts{'t'});
   pod2usage(q{'-n' number of threads }) unless(defined $opts{'n'});
   pod2usage(q{'-o' output location must be specified}) unless(defined $opts{'o'});
@@ -144,19 +152,23 @@ runPathogenDetection.pl - run virus detection a set of unmapped reads extracted 
 
 =head1 SYNOPSIS
 
-runPathogenDetection.pl -bam -o [-i -t -d -n -h ]
+runPathogenDetection.pl -bam -o [-i -t -d -u -n -h ]
 
 Required Options (bam and outdir must be defined):
 
-  --sampleBam         (-bam) sample bam file 
+  --sampleBam         (-bam) sample bam file [Optional if unmappedFastq file is provided]
+  --unmappedFastq     (-u) User defined unmapped fastq reads file [Optional if bam file is provided].
   --outdir            (-o) outdir [ Path to output directory ]
 Optional:
 
-  --includeMate       (-i) include mate sequence of unmapped read [Y,N:default N], an option to include/exclude mapped mate of an unmapped read, takes more time to fetch the reads 
+  --includeMate       (-i) include mate sequence of unmapped read [Y,N:default N],
+                           an option to include/exclude mapped mate of an unmapped read, 
+                           more sensitive with mapped mate included 
   --databaseType      (-t) databaseType [VIRUSES,BACTERIA:default VIRUSES]
   --userDb            (-d) The path of signature database. The database can be
                            in FASTA format or BWA index (5 files).
-  --numCpu            (-n) fasta reference genome file 
+  --removeTmp         (-r) remove tmp folder [1,0:default 1] 
+  --numCpu            (-n) number of cpu 
   --help              (-h) This message 
 	Example:
      perl runPathogenDetection.pl -bam test.bam -o testdir
