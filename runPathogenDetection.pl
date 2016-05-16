@@ -36,8 +36,8 @@ use Capture::Tiny qw(:all);
 const my $gottcha_path => qw(/software/CGP/external-apps/GOTTCHA/bin);
 #awk command to create FASTQ file
 const my $awk_cmd => '{print "@"$1"\n"$10"\n+\n"$11}';
-const my $BACTERIA => '/lustre/scratch112/sanger/cgppipe/canpipe/test/ref/human/38/gottcha_db/database/GOTTCHA_BACTERIA_c4937_k24_u30_xHUMAN3x.strain';
-const my $VIRUSES => '/lustre/scratch112/sanger/cgppipe/canpipe/test/ref/human/38/gottcha_db/database/GOTTCHA_VIRUSES_c5900_k24_u30_xHUMAN3x.strain';
+const my $BACTERIA => '/lustre/scratch112/sanger/cgppipe/canpipe/test/ref/human/GRCh38_full_analysis_set_plus_decoy_hla/gottcha_db/database/GOTTCHA_BACTERIA_c4937_k24_u30_xHUMAN3x.strain';
+const my $VIRUSES => '/lustre/scratch112/sanger/cgppipe/canpipe/test/ref/human/GRCh38_full_analysis_set_plus_decoy_hla/gottcha_db/database/GOTTCHA_VIRUSES_c5900_k24_u30_xHUMAN3x.strain';
 
 try {
   my ($options) = option_builder();
