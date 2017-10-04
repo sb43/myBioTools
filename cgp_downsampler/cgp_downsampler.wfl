@@ -1,0 +1,29 @@
+load 'cgp_downsampler.prm'
+about title: "CGP downsampling workflow"
+
+do_downsampling = {
+  doc title: " downsample data ",
+  desc:  " downsample bam to specified depth x",
+  constraints: "N/A",
+  author: "cgpit@sanger.ac.uk"
+	exec """ mkdir -p $OUTDIR && 
+           DS_FACTOR=\$( awk -v bases=${GENOME_SIZE} '(\$0!~/#/) {sum=sum+\$9} END { print (${COVERAGE_X}+1)/(sum/bases)}' ${input}.bas) &&
+					 SAMPLE=\$(awk '(NR==2) {print \$2}' ${input}.bas) &&
+					 $CANPIPE_LIVE_PATH bamdownsamplerandom seed=$SEED p=$DS_FACTOR I=${input} level=1 O=$OUTDIR/${SAMPLE}.bam && 
+					 date >$output.track
+			""", """lsf_DODWONSAMPLING"""
+			forward input
+}
+
+bwa_mem = {
+        doc title: "bwa_mem - bwa_mem alignment - mapping",
+            desc:  "bwa_mem  step for bwa_mem.pl",
+                        constraints: "N/A",
+                        author: "cgpit@sanger.ac.uk"
+exec """ SAMPLE=\$(awk '(NR==2) {print \$2}' ${input}.bas) &&
+         mkdir -p $OUTDIR/$SAMPLE &&
+				 bwa_mem.pl -b '-T 30 -Y' -mt $LSF_THREADS_BWAMEM -o $OUTDIR/$SAMPLE -r $REFERENCE -t $LSF_THREADS_BWAMEM  -s ${SAMPLE} $OUTDIR/${SAMPLE}.bam && 
+				 rm $OUTDIR/${SAMPLE}.bam && 
+				 date >$output.track
+""", """lsf_BWAMEM"""
+}

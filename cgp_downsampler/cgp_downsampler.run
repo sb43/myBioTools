@@ -1,0 +1,5 @@
+load 'cgp_downsampler.wfl'
+
+Bpipe.run{
+ '%.bam' * [do_downsampling+bwa_mem]
+}
