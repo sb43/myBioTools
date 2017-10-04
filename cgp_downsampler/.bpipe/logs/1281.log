@@ -1,0 +1,206 @@
+[----]	====================================================================================================
+[----]	|                              Starting Pipeline at 2017-01-18 10:15                               |
+[----]	====================================================================================================
+[CAL-27_E23.A16]	
+[CAL-27_E23.A16]	================================ Stage do_downsampling [CAL-27_E23] ================================
+[A388_3A13]	
+[A388_3A13]	================================ Stage do_downsampling [A388_3A13] =================================
+[CAL-27_E16]	
+[CAL-27_E16]	================================ Stage do_downsampling [CAL-27_E16] ================================
+[CAL-27]	
+[CAL-27]	================================== Stage do_downsampling [CAL-27] ==================================
+[CAL-27_E16.A20sH12]	
+[CAL-27_E16.A20sH12]	================================ Stage do_downsampling [CAL-27_E16] ================================
+[SiHa]	
+[SiHa]	=================================== Stage do_downsampling [SiHa] ===================================
+[A388]	
+[A388]	=================================== Stage do_downsampling [A388] ===================================
+[CAL-27_E23.A16sB9qJ8]	
+[CAL-27_E23.A16sB9qJ8]	================================ Stage do_downsampling [CAL-27_E23] ================================
+[CAL-27_E23]	
+[CAL-27_E23]	================================ Stage do_downsampling [CAL-27_E23] ================================
+[CAL-27_E16.A20sH12qE11]	
+[CAL-27_E16.A20sH12qE11]	================================ Stage do_downsampling [CAL-27_E16] ================================
+[CAL-27_E23.A16sB9]	
+[CAL-27_E23.A16sB9]	================================ Stage do_downsampling [CAL-27_E23] ================================
+[A388_3C22]	
+[A388_3C22]	================================ Stage do_downsampling [A388_3C22] =================================
+[CAL-27_E16.A20]	
+[CAL-27_E16.A20]	================================ Stage do_downsampling [CAL-27_E16] ================================
+[A388]	
+[A388]	======================================= Stage bwa_mem [A388] =======================================
+[CAL-27_E23.A16]	
+[CAL-27_E23.A16]	==================================== Stage bwa_mem [CAL-27_E23] ====================================
+[A388_3C22]	
+[A388_3C22]	==================================== Stage bwa_mem [A388_3C22] =====================================
+[CAL-27]	
+[CAL-27]	====================================== Stage bwa_mem [CAL-27] ======================================
+[CAL-27_E23.A16sB9qJ8]	
+[CAL-27_E23.A16sB9qJ8]	==================================== Stage bwa_mem [CAL-27_E23] ====================================
+[CAL-27_E16.A20sH12qE11]	
+[CAL-27_E16.A20sH12qE11]	==================================== Stage bwa_mem [CAL-27_E16] ====================================
+[CAL-27_E23.A16sB9]	
+[CAL-27_E23.A16sB9]	==================================== Stage bwa_mem [CAL-27_E23] ====================================
+4727732 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:12
+4727732 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:12
+[CAL-27_E23]	
+[CAL-27_E23]	==================================== Stage bwa_mem [CAL-27_E23] ====================================
+4726749 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 12:50
+4727687 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:11
+4727687 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:11
+4727337 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:04
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.A16sB9.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.A16sB9.bwa_mem.track
+
+4727337 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:04
+4726749 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 12:50
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.A16.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.A16.bwa_mem.track
+
+4727202 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:01
+4727201 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:01
+4727202 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:01
+4727201 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:01
+4726550 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 12:36
+4726550 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 12:36
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.A20sH12qE11.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.A20sH12qE11.bwa_mem.track
+
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.A16sB9qJ8.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.A16sB9qJ8.bwa_mem.track
+
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27.bwa_mem.track
+
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/A388_3C22.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >A388_3C22.bwa_mem.track
+
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/A388.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >A388.bwa_mem.track
+
+[CAL-27_E16.A20]	
+[CAL-27_E16.A20]	==================================== Stage bwa_mem [CAL-27_E16] ====================================
+[CAL-27_E16.A20sH12]	
+[CAL-27_E16.A20sH12]	==================================== Stage bwa_mem [CAL-27_E16] ====================================
+[CAL-27_E16]	
+[CAL-27_E16]	==================================== Stage bwa_mem [CAL-27_E16] ====================================
+[A388_3A13]	
+[A388_3A13]	==================================== Stage bwa_mem [A388_3A13] =====================================
+[SiHa]	
+[SiHa]	======================================= Stage bwa_mem [SiHa] =======================================
+4728360 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:25
+4728641 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:31
+4728641 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:31
+4728602 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:30
+4728602 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:30
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.A20.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.A20.bwa_mem.track
+
+4728360 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:25
+4728365 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:25
+4728704 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:32
+4728704 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:32
+4728365 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:25
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/A388_3A13.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >A388_3A13.bwa_mem.track
+
+4728187 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:21
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.bwa_mem.track
+
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.A20sH12.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.A20sH12.bwa_mem.track
+
+4728187 sb43    EXIT  hugemem    cgp-1-2-01  6*cgp-bigmem downsampler_BWAMEM[1] Jan 18 13:21
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/SiHa.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >SiHa.bwa_mem.track
+
+Pipeline failed! (2) 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.bwa_mem.track
+
+Pipeline failed! (2) 
+
+One or more parallel stages aborted. The following messages were reported: 
+
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/A388_3A13.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >A388_3A13.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/A388_3C22.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >A388_3C22.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/A388.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >A388.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.A20.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.A20.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.A20sH12.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.A20sH12.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.A20sH12qE11.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.A20sH12qE11.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E16.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E16.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.A16.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.A16.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.A16sB9.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.A16sB9.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.A16sB9qJ8.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.A16sB9qJ8.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/CAL-27_E23.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >CAL-27_E23.bwa_mem.track
+Command failed with exit status = 1 : 
+
+SAMPLE=$(awk '(NR==2) {print $2}' ../../downsample_input/SiHa.bam.bas) &&          mkdir -p ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE && 				 /software/CGP/canpipe/test/bin/canpipe_test bwa_mem.pl -b '-T 30 -Y' -mt 6 -o ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE -r /lustre/scratch112/sanger/cgppipe/canpipe/live/ref/human/GRCh37d5/genome.fa -t 6  -s $SAMPLE ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 rm ~/sb43_scratch116/rt_user/downsampling_564469/scripts/cgp_downsampler/downsampledBams/$SAMPLE.bam &&  				 date >SiHa.bwa_mem.track
+
+
+======================================== Pipeline Finished =========================================
+MSG: Generated report /lustre/scratch116/casm/cgp/users/sb43/myscratch/rt_user/downsampling_564469/scripts/cgp_downsampler/doc/index.html
